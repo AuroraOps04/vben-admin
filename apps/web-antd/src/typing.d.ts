@@ -47,4 +47,13 @@ declare namespace API {
   type TreeMenu = Menu & {
     children: TreeMenu[];
   };
+  type Role = {
+    createTime: string;
+    id: number;
+    label: string;
+    menus: number[];
+    name: string;
+    status: boolean;
+  };
+  type RoleParams = PageParams & Partial<Role>;
 }

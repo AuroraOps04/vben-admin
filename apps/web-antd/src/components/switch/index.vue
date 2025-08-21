@@ -12,8 +12,8 @@ const { token } = theme.useToken();
     :theme="{
       components: {
         Switch: {
-          colorPrimary: token.colorPrimary,
-          colorHighlight: token.colorError,
+          colorTextQuaternary: token.colorError,
+          colorTextTertiary: token.colorErrorHover,
         },
       },
     }"
