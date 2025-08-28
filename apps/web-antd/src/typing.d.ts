@@ -56,4 +56,17 @@ declare namespace API {
     status: boolean;
   };
   type RoleParams = PageParams & Partial<Role>;
+
+  type Config = {
+    key: string;
+    value: string;
+  };
+  type File = {
+    file: string;
+    md5: string;
+    mimetype: string;
+    originalName: string;
+    size: string;
+    uploadTime: string;
+  };
 }
