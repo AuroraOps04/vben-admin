@@ -40,8 +40,10 @@ export class ImageUploader extends Module<Options> {
     toolbar.addHandler('image', this.selectLocalImage.bind(this));
     this.handleDrop = this.handleDrop.bind(this);
     this.handlePaste = this.handlePaste.bind(this);
-
-    this.quill.root.addEventListener('drop', this.handleDrop, false);
+    // 这里 drop 事件第三个参数为 `true` 是为了在捕获阶段就执行这个函数，
+    // 这个函数里面阻止了事件冒泡，因为发现不这么做的话，
+    // 在事件冒泡到执行这个函数时，已经有一个图片被添加了，这是我们不期望的。
+    this.quill.root.addEventListener('drop', this.handleDrop, true);
     this.quill.root.addEventListener('paste', this.handlePaste, false);
   }
 
@@ -109,6 +111,7 @@ export class ImageUploader extends Module<Options> {
           if (file) {
             this.range = this.quill.getSelection();
             evt.preventDefault();
+            evt.stopPropagation();
             setTimeout(() => {
               this.range = this.quill.getSelection();
               this.readAndUploadFile(file);
